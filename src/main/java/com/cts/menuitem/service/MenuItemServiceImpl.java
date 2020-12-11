@@ -11,13 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.menuitem.exception.MenuItemNotFoundException;
-import com.cts.model.MenuItem;
-import com.cts.repository.MenuItemRepository;
+import com.cts.menuitem.model.MenuItem;
+import com.cts.menuitem.repository.MenuItemRepository;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Setter
 public class MenuItemServiceImpl implements MenuItemService{
 
 	@Autowired
