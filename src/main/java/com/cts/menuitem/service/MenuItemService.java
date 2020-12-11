@@ -2,7 +2,7 @@ package com.cts.menuitem.service;
 
 import java.util.List;
 
-import com.cts.model.MenuItem;
+import com.cts.menuitem.model.MenuItem;
 
 
 public interface MenuItemService {

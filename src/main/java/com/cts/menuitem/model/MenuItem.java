@@ -1,4 +1,4 @@
-package com.cts.model;
+package com.cts.menuitem.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,22 +13,21 @@ import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "menuitem")
 @NoArgsConstructor
 @AllArgsConstructor
 public class MenuItem {
 
-	public MenuItem(String itemName, String itemType, Long itemStock, Double itemPrice) {
-		super();
-		this.itemName = itemName;
-		this.itemType = itemType;
-		this.itemStock = itemStock;
-		this.itemPrice = itemPrice;
-	}
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
