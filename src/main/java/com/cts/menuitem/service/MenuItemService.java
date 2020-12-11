@@ -4,20 +4,19 @@ import java.util.List;
 
 import com.cts.menuitem.model.MenuItem;
 
-
 public interface MenuItemService {
 	public List<MenuItem> getMenuItemListInStock();
 
 	public MenuItem getMenuItem(long menu_id);
 
-	public String modifyMenuItem(MenuItem menuItem);
+	public MenuItem modifyMenuItem(Long menu_id,MenuItem menuItem);
 
 	public List<MenuItem> getAllMenuItemList();
 
-	public String addMenuItem(MenuItem menuItem);
+	public MenuItem addMenuItem(MenuItem menuItem);
 
-	public String deleteMenuItem(long menu_id);
-	
-	public boolean updateStock(long menu_id, int quantity);
+	public MenuItem deleteMenuItem(long menu_id);
+
+	public MenuItem updateStock(long menu_id, int quantity);
 
 }
