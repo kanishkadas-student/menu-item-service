@@ -1,6 +1,7 @@
 package com.cts.menuitem.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -59,8 +60,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals("ss", menuItemServiceImpl.getMenuItem(1).getItemName());
 	}
-	
-	
+
 	@Test
 	void modifyMenuItemTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -70,7 +70,31 @@ public class MenuItemServiceTests {
 		when(menuItemRepository.save(m1)).thenReturn(m1);
 		when(menuItemRepository.findById(Long.valueOf(1))).thenReturn(Optional.of(m1));
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
-		assertEquals("Menu Item Updated Successfully", menuItemServiceImpl.modifyMenuItem(m1));
+		assertNull(menuItemServiceImpl.modifyMenuItem(null, m1));
+	}
+
+	@Test
+	void modifyMenuItemTest2() {
+		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
+
+		MenuItem m1 = new MenuItem(Long.valueOf(1), "ss", "food", Long.valueOf(4), Double.valueOf(40));
+
+		when(menuItemRepository.save(m1)).thenReturn(m1);
+		when(menuItemRepository.findById(Long.valueOf(1))).thenReturn(Optional.of(m1));
+		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
+		assertEquals(m1, menuItemServiceImpl.modifyMenuItem(Long.valueOf(1), m1));
+	}
+
+	@Test
+	void modifyMenuItemTest3() {
+		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
+
+		MenuItem m1 = new MenuItem(Long.valueOf(1), "ss", "food", Long.valueOf(4), Double.valueOf(40));
+
+		when(menuItemRepository.save(m1)).thenThrow(NullPointerException.class);
+		when(menuItemRepository.findById(Long.valueOf(1))).thenReturn(Optional.of(m1));
+		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
+		assertNull(menuItemServiceImpl.modifyMenuItem(Long.valueOf(1), m1));
 	}
 
 	@Test
@@ -82,9 +106,9 @@ public class MenuItemServiceTests {
 		when(menuItemRepository.save(m1)).thenReturn(m1);
 		when(menuItemRepository.findById(Long.valueOf(1))).thenReturn(Optional.of(m1));
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
-		assertEquals(true, menuItemServiceImpl.updateStock(1, 1));
+		assertEquals(m1, menuItemServiceImpl.updateStock(1, 1));
 	}
-	
+
 	@Test
 	void addMenuItemTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -94,7 +118,19 @@ public class MenuItemServiceTests {
 		when(menuItemRepository.save(m1)).thenReturn(m1);
 		when(menuItemRepository.findById(Long.valueOf(2))).thenReturn(Optional.of(m1));
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
-		assertEquals("Menu Item Added Successfully", menuItemServiceImpl.addMenuItem(m1));
+		assertEquals(m1, menuItemServiceImpl.addMenuItem(m1));
+	}
+
+	@Test
+	void addMenuItemTest2() {
+		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
+
+		MenuItem m1 = new MenuItem(Long.valueOf(1), "ss", "food", Long.valueOf(4), Double.valueOf(40));
+
+		when(menuItemRepository.save(m1)).thenThrow(NullPointerException.class);
+		when(menuItemRepository.findById(Long.valueOf(2))).thenReturn(Optional.of(m1));
+		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
+		assertNull(menuItemServiceImpl.addMenuItem(m1));
 	}
 
 	@Test
@@ -105,6 +141,6 @@ public class MenuItemServiceTests {
 
 		when(menuItemRepository.findById(Long.valueOf(1))).thenReturn(Optional.of(m1));
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
-		assertEquals("Menu Item Deleted Successfully", menuItemServiceImpl.deleteMenuItem(1));
+		assertEquals(m1, menuItemServiceImpl.deleteMenuItem(1));
 	}
 }

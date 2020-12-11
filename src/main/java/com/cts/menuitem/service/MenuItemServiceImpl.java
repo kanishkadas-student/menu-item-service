@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @Setter
-public class MenuItemServiceImpl implements MenuItemService{
+public class MenuItemServiceImpl implements MenuItemService {
 
 	@Autowired
 	private MenuItemRepository menuItemRepository;
-	
-	
+
 	@Override
 	public List<MenuItem> getAllMenuItemList() {
 		log.info("Start");
@@ -33,7 +30,6 @@ public class MenuItemServiceImpl implements MenuItemService{
 		log.debug("Menu Item List:{}", menuItemList);
 		return menuItemList;
 	}
-
 
 	@Override
 	@Transactional
@@ -46,55 +42,67 @@ public class MenuItemServiceImpl implements MenuItemService{
 
 	@Override
 	public MenuItem getMenuItem(long menu_id) {
-		log.info("Start");
-		java.util.Optional<MenuItem> item=menuItemRepository.findById(menu_id);
-		if(!item.isPresent()) {
-			throw new MenuItemNotFoundException("Menu Item with id "+ menu_id+" does not exist");
+
+		java.util.Optional<MenuItem> item = menuItemRepository.findById(menu_id);
+		if (!item.isPresent()) {
+			throw new MenuItemNotFoundException("Menu Item with id " + menu_id + " does not exist");
 		}
-		MenuItem item2=item.get();
+		MenuItem item2 = item.get();
 		return item2;
 	}
 
 	@Override
-	public String modifyMenuItem(MenuItem menuItem) {
-		log.info("Start");
-		long menu_id=menuItem.getItemId();
-		getMenuItem(menu_id);
-		menuItemRepository.save(menuItem);
-		return "Menu Item Updated Successfully";
+	public MenuItem modifyMenuItem(Long menuId, MenuItem menu) {
 
-	}
-	
-	public boolean updateStock(long menu_id, int quantity) {
-		MenuItem menuItem = getMenuItem(menu_id);
-		
-		menuItem.setItemStock(menuItem.getItemStock()- quantity);
-		menuItemRepository.save(menuItem);
-		
-		return true;
-	}
+		Optional<MenuItem> optMenuItem = null;
+		if (menuId != null)
+			optMenuItem = menuItemRepository.findById(menuId);
+		if (optMenuItem != null && optMenuItem.isPresent()) {
+			MenuItem menuItem = optMenuItem.get();
+			menuItem.setItemName(menu.getItemName());
+			menuItem.setItemStock(menu.getItemStock());
+			menuItem.setItemType(menu.getItemType());
+			menuItem.setItemPrice(menu.getItemPrice());
+			try {
+				return menuItemRepository.save(menuItem);
+			} catch (Exception e) {
 
-	
-	@Override
-	public String addMenuItem(MenuItem menuItem) {
-		Optional<MenuItem> op=menuItemRepository.findById(menuItem.getItemId());
-		if(op.isPresent()) {
-			throw new MenuItemNotFoundException("MenuItem with the Id "+menuItem.getItemId()+" already exist");
+			}
 		}
-		menuItemRepository.save(menuItem);
-		return "Menu Item Added Successfully";
+		return null;
+
+	}
+
+	public MenuItem updateStock(long menu_id, int quantity) {
+		try {
+			MenuItem menuItem = getMenuItem(menu_id);
+
+			menuItem.setItemStock(menuItem.getItemStock() - quantity);
+
+			return menuItemRepository.save(menuItem);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 	@Override
-	public String deleteMenuItem(long menu_id) {
-		Optional<MenuItem> op=menuItemRepository.findById(menu_id);
-		if(!op.isPresent()) {
-			throw new MenuItemNotFoundException("MenuItem with the Id "+menu_id+" is not exist");
+	public MenuItem addMenuItem(MenuItem menuItem) {
+		try {
+			return menuItemRepository.save(menuItem);
+		} catch (Exception e) {
+		}
+		return null;
+	}
+
+	@Override
+	public MenuItem deleteMenuItem(long menu_id) {
+		Optional<MenuItem> op = menuItemRepository.findById(menu_id);
+		if (!op.isPresent()) {
+			throw new MenuItemNotFoundException("MenuItem with the Id " + menu_id + " is not exist");
 		}
 		menuItemRepository.deleteById(menu_id);
-		return "Menu Item Deleted Successfully";
+		return op.get();
 	}
-	
-	
 
 }

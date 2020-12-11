@@ -1,26 +1,24 @@
 package com.cts.menuitem.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.cts.menuitem.exception.MenuItemNotFoundException;
-
-/*@ControllerAdvice
-@ResponseBody*/
-
+import com.cts.menuitem.model.Status;
 
 @RestControllerAdvice
 public class GlobalErrorHandler {
 
 	@ExceptionHandler(MenuItemNotFoundException.class)
-	public ResponseEntity<String> handleNotFoundError(MenuItemNotFoundException ex){
-		ResponseEntity<String> re=new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	public Status handleNotFoundError(MenuItemNotFoundException ex) {
+		Status re = new Status(400, ex.getMessage(), null);
 		return re;
 	}
-	
+
+	@ExceptionHandler(Exception.class)
+	public Status handleNotFoundError2(Exception ex) {
+		Status re = new Status(400, ex.getMessage(), null);
+		return re;
+	}
+
 }
