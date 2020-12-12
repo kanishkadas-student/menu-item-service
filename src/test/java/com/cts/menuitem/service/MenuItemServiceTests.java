@@ -19,7 +19,7 @@ public class MenuItemServiceTests {
 
 	@Mock
 	MenuItemRepository menuItemRepository;
-
+	//test for getting all items implementation
 	@Test
 	void getAllMenuItemListTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -34,7 +34,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals(2, menuItemServiceImpl.getAllMenuItemList().size());
 	}
-
+	//test for getting list of items in stock
 	@Test
 	void getMenuItemListInStockTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -49,7 +49,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals(2, menuItemServiceImpl.getMenuItemListInStock().size());
 	}
-
+	//test for getting menu items by name
 	@Test
 	void getMenuItemTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -60,7 +60,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals("ss", menuItemServiceImpl.getMenuItem(1).getItemName());
 	}
-
+	//test1 for modifying items
 	@Test
 	void modifyMenuItemTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -72,7 +72,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertNull(menuItemServiceImpl.modifyMenuItem(null, m1));
 	}
-
+	//test2 for modifying items
 	@Test
 	void modifyMenuItemTest2() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -84,7 +84,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals(m1, menuItemServiceImpl.modifyMenuItem(Long.valueOf(1), m1));
 	}
-
+	//test3 for modifying items
 	@Test
 	void modifyMenuItemTest3() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -96,7 +96,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertNull(menuItemServiceImpl.modifyMenuItem(Long.valueOf(1), m1));
 	}
-
+	//test for updating stock
 	@Test
 	void updateStockTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -108,7 +108,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals(m1, menuItemServiceImpl.updateStock(1, 1));
 	}
-
+	//test1 for adding item
 	@Test
 	void addMenuItemTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -120,7 +120,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertEquals(m1, menuItemServiceImpl.addMenuItem(m1));
 	}
-
+	//test2 for adding item
 	@Test
 	void addMenuItemTest2() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();
@@ -132,7 +132,7 @@ public class MenuItemServiceTests {
 		menuItemServiceImpl.setMenuItemRepository(menuItemRepository);
 		assertNull(menuItemServiceImpl.addMenuItem(m1));
 	}
-
+	//test for deleting menu items
 	@Test
 	void deleteMenuItemTest() {
 		MenuItemServiceImpl menuItemServiceImpl = new MenuItemServiceImpl();

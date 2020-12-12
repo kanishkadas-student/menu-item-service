@@ -14,6 +14,7 @@ class AuthServiceTest {
 	@Mock
 	TruyumAuthFeign truyumAuthFeign;
 
+	//test for authorization
 	@Test
 	void test() {
 		AuthServiceImpl as = new AuthServiceImpl();

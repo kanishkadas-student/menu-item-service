@@ -19,7 +19,7 @@ public class MenuItemControllerTests {
 	MenuItemService menuItemService;
 	@Mock
 	AuthService authService;
-
+	//test1 for getting all menu items
 	@Test
 	void getAllMenuItemListTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -29,7 +29,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.OK, menuItemController.getAllMenuItemList(null).getStatusCode());
 	}
-
+	//test2 for getting all menu items
 	@Test
 	void getAllMenuItemListTest2() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -39,7 +39,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.UNAUTHORIZED, menuItemController.getAllMenuItemList(null).getStatusCode());
 	}
-
+	//test1 for checking items available in stock
 	@Test
 	void getMenuItemListInStockTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -49,7 +49,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.OK, menuItemController.getMenuItemListInStock(null).getStatusCode());
 	}
-
+	//test2 for checking items available in stock
 	@Test
 	void getMenuItemListInStockTest2() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -59,7 +59,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.UNAUTHORIZED, menuItemController.getMenuItemListInStock(null).getStatusCode());
 	}
-
+	//test1 for getting menu by ID
 	@Test
 	void getMenuItemTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -70,7 +70,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.OK, menuItemController.getMenuItem(null, 1).getStatusCode());
 	}
-
+	//test1 for getting menu by ID
 	@Test
 	void getMenuItemTest2() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -81,7 +81,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.UNAUTHORIZED, menuItemController.getMenuItem(null, 1).getStatusCode());
 	}
-
+	//test1 for adding menu in list
 	@Test
 	void addMenuItemTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -92,7 +92,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.CREATED, menuItemController.addMenuItem(null, menuItem).getStatusCode());
 	}
-
+	//test2 for adding menu items
 	@Test
 	void addMenuItemTest2() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -103,7 +103,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.UNAUTHORIZED, menuItemController.addMenuItem(null, menuItem).getStatusCode());
 	}
-
+	//test1 for deleting menu items
 	@Test
 	void deleteMenuItemTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -114,7 +114,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.OK, menuItemController.deleteMenuItem(null, 1).getStatusCode());
 	}
-
+	//test2 for deleting menu items
 	@Test
 	void deleteMenuItemTest2() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -125,7 +125,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.UNAUTHORIZED, menuItemController.deleteMenuItem(null, 1).getStatusCode());
 	}
-
+	//test1 for modifying meny items 
 	@Test
 	void modifyMenuItemTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -136,7 +136,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.OK, menuItemController.modifyMenuItem(null, null, menuItem).getStatusCode());
 	}
-
+	//test2 for modifying menu items
 	@Test
 	void modifyMenuItemTest2() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -147,7 +147,7 @@ public class MenuItemControllerTests {
 		menuItemController.setMenuItemService(menuItemService);
 		assertEquals(HttpStatus.UNAUTHORIZED, menuItemController.modifyMenuItem(null, null, menuItem).getStatusCode());
 	}
-
+	//test1 for updating stock
 	@Test
 	void updateStockTest() {
 		MenuItemController menuItemController = new MenuItemController();
@@ -159,7 +159,7 @@ public class MenuItemControllerTests {
 		System.out.println(menuItemController.updateStock(null, 1, 1).getStatusCode());
 		assertEquals(HttpStatus.OK, menuItemController.updateStock(null, 1, 1).getStatusCode());
 	}
-
+	//test2 for updating stock
 	@Test
 	void updateStockTest2() {
 		MenuItemController menuItemController = new MenuItemController();

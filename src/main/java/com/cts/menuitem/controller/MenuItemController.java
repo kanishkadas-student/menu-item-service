@@ -30,6 +30,7 @@ public class MenuItemController {
 	@Autowired
 	AuthService authService;
 
+	//getting list of all menu items
 	@GetMapping("/getAllMenuItems")
 	public ResponseEntity<List<MenuItem>> getAllMenuItemList(@RequestHeader("Authorization") String token) {
 		if (authService.checkValidation(token))
@@ -38,7 +39,7 @@ public class MenuItemController {
 			return new ResponseEntity<List<MenuItem>>(new ArrayList<MenuItem>(), HttpStatus.UNAUTHORIZED);
 
 	}
-
+    //getting the list of items in stock
 	@GetMapping("/getMenuItemInStock")
 	public ResponseEntity<List<MenuItem>> getMenuItemListInStock(@RequestHeader("Authorization") String token) {
 		if (authService.checkValidation(token))
@@ -47,7 +48,7 @@ public class MenuItemController {
 			return new ResponseEntity<List<MenuItem>>(new ArrayList<MenuItem>(), HttpStatus.UNAUTHORIZED);
 
 	}
-
+    //getting item by specific ID
 	@GetMapping("/{menu_id}")
 	public ResponseEntity<MenuItem> getMenuItem(@RequestHeader("Authorization") String token,
 			@PathVariable long menu_id) {
@@ -58,6 +59,7 @@ public class MenuItemController {
 
 	}
 
+	 //adding the items to the list
 	@PostMapping("/add")
 	public ResponseEntity<MenuItem> addMenuItem(@RequestHeader("Authorization") String token,
 			@RequestBody MenuItem menuItem) {
@@ -68,7 +70,7 @@ public class MenuItemController {
 			return new ResponseEntity<MenuItem>(new MenuItem(), HttpStatus.UNAUTHORIZED);
 
 	}
-
+    //deleteing the item from list with specific ID
 	@DeleteMapping("/{menu_id}")
 	public ResponseEntity<MenuItem> deleteMenuItem(@RequestHeader("Authorization") String token,
 			@PathVariable long menu_id) {
@@ -78,7 +80,7 @@ public class MenuItemController {
 			return new ResponseEntity<MenuItem>(new MenuItem(), HttpStatus.UNAUTHORIZED);
 
 	}
-
+	//modifying the menu item with specific ID
 	@PutMapping("/{menu_id}")
 	public ResponseEntity<MenuItem> modifyMenuItem(@RequestHeader("Authorization") String token,
 			@PathVariable Long menu_id, @RequestBody MenuItem menuItem) {
@@ -88,7 +90,7 @@ public class MenuItemController {
 			return new ResponseEntity<MenuItem>(new MenuItem(), HttpStatus.UNAUTHORIZED);
 
 	}
-
+	//updating the menu item with specific ID
 	@PutMapping("/update/{menu_id}")
 	public ResponseEntity<MenuItem> updateStock(@RequestHeader("Authorization") String token,
 			@PathVariable long menu_id, @RequestBody int quantity) {

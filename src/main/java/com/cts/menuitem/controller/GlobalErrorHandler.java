@@ -8,7 +8,7 @@ import com.cts.menuitem.model.Status;
 
 @RestControllerAdvice
 public class GlobalErrorHandler {
-
+    //item not found exception handled
 	@ExceptionHandler(MenuItemNotFoundException.class)
 	public Status handleNotFoundError(MenuItemNotFoundException ex) {
 		Status re = new Status(400, ex.getMessage(), null);

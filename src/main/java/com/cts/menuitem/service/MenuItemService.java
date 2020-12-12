@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cts.menuitem.model.MenuItem;
 
+//all the services provided in menu-item 
 public interface MenuItemService {
 	public List<MenuItem> getMenuItemListInStock();
 

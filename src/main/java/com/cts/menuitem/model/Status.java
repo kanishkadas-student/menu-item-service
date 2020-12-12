@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 public class Status {
 
-	private int statusCode;
-	private String message;
-	private List<FieldError> errors;
+	private int statusCode;// code of the status initialised
+	private String message;// message to be displayed in the status initialised
+	private List<FieldError> errors;// list of errors initialised 
 }

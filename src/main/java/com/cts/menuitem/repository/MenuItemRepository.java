@@ -12,6 +12,6 @@ import com.cts.menuitem.model.MenuItem;
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
 
 	@Query(value = "SELECT * FROM menuitem WHERE item_stock > 0", nativeQuery = true)
-	List<MenuItem> getMenuItemBAsedOnStock();
+	List<MenuItem> getMenuItemBAsedOnStock(); // query for getting list of items in stock
 	
 }
